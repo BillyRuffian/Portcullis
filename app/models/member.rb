@@ -55,4 +55,8 @@ class Member
     ! male?
   end
   
+  def gender= value
+    self.male = ( value == "M" )
+  end
+  
 end
