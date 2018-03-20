@@ -1,0 +1,9 @@
+constituencies:
+  endpoint: spec/fixtures/constituencies.xml
+
+members: 
+  endpoint: spec/fixtures/members.xml
+
+member:
+  details:
+    endpoint: spec/fixtures/members/%{id}.xml

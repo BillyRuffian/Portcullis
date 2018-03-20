@@ -1,0 +1,10 @@
+
+constituencies:
+  endpoint: http://data.parliament.uk/membersdataplatform/services/mnis/ReferenceData/Constituencies/
+
+members:
+  endpoint: http://data.parliament.uk/membersdataplatform/services/mnis/members/query/House=Commons
+
+member:
+  details:
+    endpoint: http://data.parliament.uk/membersdataplatform/services/mnis/members/query/id=%{id}/FullBiog

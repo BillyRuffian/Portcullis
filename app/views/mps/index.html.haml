@@ -1,0 +1,5 @@
+.container
+  %ul
+    - @members.each do |member|
+      %li
+        = link_to member.list_as, mp_path( member.member_id )

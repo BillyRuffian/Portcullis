@@ -1,0 +1,60 @@
+- if ! @member.blank?
+  .container
+    .row.pt-5.mt-5
+      .col-lg-4.col-md-6.col-sm-12
+        .card
+          = image_tag "http://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/#{@member.member_id}/", class: 'card-img-top'
+          .card-body
+            %h3.card-title
+              = @member.display_as
+            %h5.card-title
+              = @member.party
+            %p.card-text.small
+              = @member.member_from
+      .col-lg-8.col-md-6.col-sm-12
+        %h2 Biography
+        =# debug @member
+  
+    - if @member.posts?
+      .row.mt-5
+        .col-sm-12
+          %h4 Government / Opposition posts
+          %table.table
+            %thead
+              %tr
+                %th{ scope: :col } Post
+                %th{ scope: :col } Dates
+            %tbody
+              - @member.posts.each do |post|
+                %tr{ class: (post.active? ? 'bg-white' : '' ) }
+                  %td= post.hansard_name || post.name
+                  %td
+                    = post.start_date.to_s( :gb )
+                    = '&mdash;'.html_safe
+                    = post.end_date.try( :to_s, :gb )
+                    %br
+                    %span.small= distance_of_time_in_words( post.start_date, post.end_date || Date.today )
+                    
+    - if @member.committees?
+      .row.mt-5
+        .col-sm-12
+          %h4 Committee Memberships
+          %table.table
+            %thead
+              %tr
+                %th{ scope: :col } Committee
+                %th{ scope: :col } Dates
+            %tbody
+              - @member.committees.sort_by( &:start_date ).reverse.each do |committee|
+                %tr{ class: (committee.active? ? 'bg-white' : '' ) }
+                  %td= committee.name 
+                  %td
+                    = committee.start_date.to_s( :gb )
+                    = '&mdash;'.html_safe
+                    = committee.end_date.try( :to_s, :gb )
+                    %br
+                    %span.small= distance_of_time_in_words( committee.start_date, committee.end_date || Date.today )
+      
+    
+- else
+  Oops, can't find that member of parliament

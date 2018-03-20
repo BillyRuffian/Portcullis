@@ -1,0 +1,18 @@
+%nav.navbar.navbar-expand-md.navbar-light
+  %a.navbar-brand{ href: root_path } 
+    Localminster
+  
+  %button.navbar-toggler{ type: 'button', 
+                          'data-toggle': 'collapse',
+                          'data-target': '#mainNavigation', 
+                          'aria-controls': 'mainNavigation', 
+                          'aria-expanded': 'false', 
+                          'aria-label': 'Toggle Navigation' }
+    %span.navbar-toggler-icon
+    
+  #mainNavigation.collapse.navbar-collapse
+    %ul.navbar-nav.ml-auto
+      %li.nav-item
+        %a.nav-link{ href: '#' } Commons
+      %li.nav-item
+        %a.nav-link{ href: '#' } Lords
