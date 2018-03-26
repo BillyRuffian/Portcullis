@@ -1,0 +1,26 @@
+- unless committees.blank?
+  .row.mt-5
+    .col-sm-12
+      %h4 Committee Memberships
+      %table.table
+        %thead
+          %tr
+            %th{ scope: :col } Committee
+            %th{ scope: :col } Dates
+            %th{ scope: :col }
+        %tbody
+          - committees.sort_by( &:start_date ).reverse.each do |committee|
+            %tr{ class: (committee.active? ? 'bg-white' : '' ) }
+              %td
+                = committee.name
+              %td
+                = committee.start_date.to_s( :gb )
+                = '&mdash;'.html_safe
+                = committee.end_date.try( :to_s, :gb )
+                %br
+                %span.small= distance_of_time_in_words( committee.start_date, committee.end_date || Date.today )
+              %td.text-right
+                - if committee.chair?
+                  %span.badge.badge-pill.badge-secondary current chair
+                - elsif ! committee.chair_dates.empty?
+                  %span.badge.badge-pill.badge-secondary former chair

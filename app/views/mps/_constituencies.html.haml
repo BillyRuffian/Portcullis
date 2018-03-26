@@ -1,0 +1,20 @@
+- unless constituencies.blank?
+  .row.mt-5
+    .col-sm-12
+      %h4 Constituency History
+      %table.table
+        %thead
+          %tr
+            %th{ scope: :col } Constituency
+            %th{ scope: :col } Dates
+            %th{ scope: :col }
+        %tbody
+          - constituencies.sort_by( &:start_date ).reverse.each do |constituency|
+            %tr
+              %td
+                = constituency.name
+              %td
+                = constituency.start_date.to_s( :gb )
+                = '&mdash;'.html_safe
+                = constituency.end_date.try( :to_s, :gb )
+              %td.text-right

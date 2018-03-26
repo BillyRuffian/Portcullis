@@ -1,6 +1,8 @@
 class Member::Committee < DatedDocument
   include Mongoid::Document
   
+  embedded_in :member
+  
   embeds_many :chair_dates, class_name: 'Member::ChairDate'
   
   field :n, as: :name, type: String

@@ -10,6 +10,14 @@ RSpec.describe "mps/show.html.haml", type: :view do
       
       expect( rendered ).to match /#{member.display_as}/
     end
+    
+    
+    it 'shows the constituency history' do
+      assign( :member, FactoryBot.create( :member_complete ) )
+      render
+      
+      expect( rendered ).to match /Constituency History/
+    end
   end
   
   context 'when the member does not exist' do

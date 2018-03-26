@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature 'User wants a list of MPs', type: :feature do
   
   scenario 'they visit a page and can see all members of parliament' do
-    member_1 = FactoryBot.create :member, member_id: '10001', house: 'Commons'
-    member_2 = FactoryBot.create :member, member_id: '10002', house: 'Commons'
+    member_1 = FactoryBot.create :member_complete, member_id: '10001', house: 'Commons'
+    member_2 = FactoryBot.create :member_complete, member_id: '10002', house: 'Commons'
     
     visit mps_path
     

@@ -33,6 +33,9 @@ gem "bootsnap", ">= 1.1.0", require: false
 # Optimised XML parser
 gem 'ox'
 
+# RDF graph parser
+gem 'linkeddata'
+
 # Mongo driver gem
 gem 'mongoid', '~> 6.1.0'
 
@@ -66,6 +69,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'shoulda'
   gem 'faker'
+  gem 'bundle-audit'
 end
 
 

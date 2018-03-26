@@ -15,57 +15,9 @@
         %h2 Biography
         =# debug @member
   
-    - if @member.posts?
-      .row.mt-5
-        .col-sm-12
-          %h4 Government / Opposition posts
-          %table.table
-            %thead
-              %tr
-                %th{ scope: :col } Post
-                %th{ scope: :col } Dates
-                %th{ scope: :col }
-            %tbody
-              - @member.posts.each do |post|
-                %tr{ class: (post.active? ? 'bg-white' : '' ) }
-                  %td
-                    = post.hansard_name || post.name
-                  %td
-                    = post.start_date.to_s( :gb )
-                    = '&mdash;'.html_safe
-                    = post.end_date.try( :to_s, :gb )
-                    %br
-                    %span.small= distance_of_time_in_words( post.start_date, post.end_date || Date.today )
-                  %td.text-right
-                    - if ! post.is_unpaid?
-                      %span.badge.badge-pill.badge-secondary paid post 
-                    - if post.is_joint?
-                      %span.badge.badge-pill.badge-secondary jointly held
-                    
-    - if @member.committees?
-      .row.mt-5
-        .col-sm-12
-          %h4 Committee Memberships
-          %table.table
-            %thead
-              %tr
-                %th{ scope: :col } Committee
-                %th{ scope: :col } Dates
-                %th{ scope: :col }
-            %tbody
-              - @member.committees.sort_by( &:start_date ).reverse.each do |committee|
-                %tr{ class: (committee.active? ? 'bg-white' : '' ) }
-                  %td
-                    = committee.name
-                  %td
-                    = committee.start_date.to_s( :gb )
-                    = '&mdash;'.html_safe
-                    = committee.end_date.try( :to_s, :gb )
-                    %br
-                    %span.small= distance_of_time_in_words( committee.start_date, committee.end_date || Date.today )
-                  %td.text-right
-                    - if committee.chair?
-                      %span.badge.badge-pill.badge-secondary chair
+    = render partial: 'posts',          locals:{ posts:          @member.posts          } 
+    = render partial: 'committees',     locals:{ committees:     @member.committees     }
+    = render partial: 'constituencies', locals:{ constituencies: @member.constituencies }
                     
       
     

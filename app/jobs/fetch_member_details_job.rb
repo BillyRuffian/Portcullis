@@ -14,10 +14,16 @@ class FetchMemberDetailsJob < ApplicationJob
         setter = k.to_s + '=' 
         relation = target_object.relations.with_indifferent_access[k]
         if relation
-          # we do this because attribute data is found in a singularized key name immediately beneath the 
-          # attribute key. Bizarre, but not my schema. E.g. [:committees][:committee]=[{},{}]
-          relation_data = v[k.to_s.singularize.to_sym]
+          if relation[:relation] == Mongoid::Relations::Embedded::Many
+            # we do this because attribute data is found in a singularized key name immediately beneath the 
+            # attribute key. Bizarre, but not my schema. E.g. [:committees][:committee]=[{},{}]
+            relation_data = v[k.to_s.singularize.to_sym]
+          else
+            relation_data = v
+          end
+
           value = unpack( relation_data, Object.const_get( relation['class_name'] ) )
+          
           if ! value.blank? and ! value.kind_of? Array and relation[:relation] == Mongoid::Relations::Embedded::Many
             value = [value] 
           end

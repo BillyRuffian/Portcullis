@@ -9,9 +9,13 @@ class Member
   validates_presence_of   :house
   validates_uniqueness_of :member_id
   
-  embeds_many :government_posts, class_name: 'Member::Post'
-  embeds_many :opposition_posts, class_name: 'Member::Post'
-  embeds_many :committees,       class_name: 'Member::Committee'
+  embeds_many :government_posts,  class_name: 'Member::Post'
+  embeds_many :opposition_posts,  class_name: 'Member::Post'
+  embeds_many :committees,        class_name: 'Member::Committee'
+  embeds_many :constituencies,    class_name: 'Member::Constituency'
+  embeds_many :addresses,         class_name: 'Member::Address'
+  embeds_many :elections,         class_name: 'Member::Election'
+  embeds_many :biography_entries, class_name: 'Member::BiographyEntry'
   
   accepts_nested_attributes_for :government_posts,
                                 :opposition_posts,

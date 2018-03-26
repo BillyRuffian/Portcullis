@@ -1,6 +1,8 @@
 class Member::Post < DatedDocument
   include Mongoid::Document
-#   include Mongoid::Attributes::Dynamic
+
+  embedded_in :member, inverse_of: :government_posts
+  embedded_in :member, inverse_of: :opposition_posts
   
   field :n,    as: :name,                 type: String
   field :lmn,  as: :laying_minister_name, type: String
