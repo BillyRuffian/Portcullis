@@ -13,8 +13,8 @@ require 'rails_helper'
 RSpec.describe MpsHelper, type: :helper do
   
   before :context do
-    @male  = FactoryBot.create :member, x: true
-    @female = FactoryBot.create :member, x: false
+    @male  = FactoryBot.create :member_complete, x: true
+    @female = FactoryBot.create :member_complete, x: false
   end
   
   describe 'generates correct pronouns' do
@@ -29,5 +29,15 @@ RSpec.describe MpsHelper, type: :helper do
       expect( helper.pronoun( @female, :object     ) ).to eq 'her'
       expect( helper.pronoun( @female, :possessive ) ).to eq 'her'
     end
+  end
+  
+  describe 'generates biography' do
+    before :context do
+      @bio = helper.biographize( @male )
+    end
+    
+    it 'should display the name of the member' do
+      expect( @bio ).to match /#{@male.display_as}/
+    end      
   end
 end

@@ -3,6 +3,8 @@ class Constituency
   # rinclude Mongoid::Timestamps::Updated::Short
   include Mongoid::Attributes::Dynamic
   
+  embeds_one :election, class_name: 'Member::Election'
+  
   validates_presence_of :constituency_id
   validates_presence_of :name
   validates_uniqueness_of :constituency_id

@@ -5,4 +5,8 @@ class Member::BiographyEntry
   
   field :category, type: String
   field :entry, type: String
+  
+  def entries
+    entry.split( ', ' )
+  end
 end

@@ -9,6 +9,7 @@ class Member
   validates_presence_of   :house
   validates_uniqueness_of :member_id
   
+  embeds_one  :basic_details,     class_name: 'Member::BasicDetail'
   embeds_many :government_posts,  class_name: 'Member::Post'
   embeds_many :opposition_posts,  class_name: 'Member::Post'
   embeds_many :committees,        class_name: 'Member::Committee'
@@ -35,6 +36,7 @@ class Member
   field :h_enddt, as: :house_end_date, type: Date
   field :p,       as: :party,          type: String
   field :x,       as: :male,           type: Boolean
+  field :dob,     as: :date_of_birth,  type: Date
   
   index( { member_id: 1 }, unique: true )
   index( { list_as:   1 } )

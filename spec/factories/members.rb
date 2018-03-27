@@ -7,6 +7,7 @@ FactoryBot.define do
     f_as{ Faker::Name.name_with_middle }
     h{ Faker::HarryPotter.house }
     h_enddt nil
+    dob{ 50.years.ago }
     x false
     
     factory :member_complete do
@@ -14,7 +15,6 @@ FactoryBot.define do
         create_list( :member_address, 3, member: member )
         create_list( :member_committee, 5, member: member )
         create_list( :member_constituency, 1, member: member )
-        create_list( :member_election, 5, member: member )
         create_list( :member_government_post, 5, member: member )
       end
     end

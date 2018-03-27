@@ -13,7 +13,7 @@
               = @member.member_from
       .col-lg-8.col-md-6.col-sm-12
         %h2 Biography
-        =# debug @member
+        = biographize( @member )
   
     = render partial: 'posts',          locals:{ posts:          @member.posts          } 
     = render partial: 'committees',     locals:{ committees:     @member.committees     }
