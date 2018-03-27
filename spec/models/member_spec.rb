@@ -25,8 +25,8 @@ RSpec.describe Member, type: :model do
   
   context 'disallows duplicates' do
     it 'of member_id' do
-      FactoryBot.create :member
-      expect{ FactoryBot.create :member }.to raise_error Mongoid::Errors::Validations
+      FactoryBot.create :member, mid: 999
+      expect{ FactoryBot.create :member, mid: 999 }.to raise_error Mongoid::Errors::Validations
     end
   end
   

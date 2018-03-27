@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :member do
-    mid '1'
+    sequence( :mid, 500 ){ |n| n.to_s }
+
     d_as{ Faker::Name.name }
     l_as{ Faker::Name.last_name }
     f_as{ Faker::Name.name_with_middle }

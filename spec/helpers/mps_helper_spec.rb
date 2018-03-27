@@ -11,5 +11,23 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe MpsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  before :context do
+    @male  = FactoryBot.create :member, x: true
+    @female = FactoryBot.create :member, x: false
+  end
+  
+  describe 'generates correct pronouns' do
+    it 'with male pronouns for men' do
+      expect( helper.pronoun( @male, :subject    ) ).to eq 'he'
+      expect( helper.pronoun( @male, :object     ) ).to eq 'him'
+      expect( helper.pronoun( @male, :possessive ) ).to eq 'his'
+    end
+    
+    it 'with female pronouns for women' do
+      expect( helper.pronoun( @female, :subject    ) ).to eq 'she'
+      expect( helper.pronoun( @female, :object     ) ).to eq 'her'
+      expect( helper.pronoun( @female, :possessive ) ).to eq 'her'
+    end
+  end
 end
