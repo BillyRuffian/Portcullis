@@ -32,12 +32,8 @@ RSpec.describe MpsHelper, type: :helper do
   end
   
   describe 'generates biography' do
-    before :context do
-      @bio = helper.biographize( @male )
-    end
-    
     it 'should display the name of the member' do
-      expect( @bio ).to match /#{@male.display_as}/
+      expect( helper.biographize(@male) ).to match /#{@male.display_as}/
     end      
   end
 end

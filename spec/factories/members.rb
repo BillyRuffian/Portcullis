@@ -16,6 +16,7 @@ FactoryBot.define do
         create_list( :member_committee, 5, member: member )
         create_list( :member_constituency, 1, member: member )
         create_list( :member_government_post, 5, member: member )
+        member.create_basic_details( FactoryBot.attributes_for( :member_basic_detail ) )
       end
     end
   end

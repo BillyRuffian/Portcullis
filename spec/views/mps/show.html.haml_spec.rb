@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "mps/show.html.haml", type: :view do
   context 'when the member exists' do
     it 'shows the MPs details' do
-      member = FactoryBot.create :member
+      member = FactoryBot.create :member_complete
       assign( :member, member )
       
       render
@@ -32,17 +32,19 @@ RSpec.describe "mps/show.html.haml", type: :view do
   
   context 'with government / opposition posts' do
     it 'shows them when they are present' do
-      member = FactoryBot.build :member
-      member.government_posts = FactoryBot.build_list :member_post, 3
+      member = FactoryBot.create :member_complete
       assign( :member, member )
       
       render
       
-      expect( rendered ).to match /#{member.government_posts.first.hansard_name}/
+      expect( rendered ).to match /#{member.opposition_posts.first.hansard_name}/
     end
     
     it 'does not show the section when they are absent' do
-      assign( :member, FactoryBot.create( :member ) )
+      member = FactoryBot.create( :member_complete )
+      member.government_posts = []
+      member.opposition_posts = []
+      assign( :member, member )
 
       render
       

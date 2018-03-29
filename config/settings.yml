@@ -8,3 +8,18 @@ members:
 member:
   details:
     endpoint: http://data.parliament.uk/membersdataplatform/services/mnis/members/query/id=%{id}/FullBiog
+
+commons:
+  divisions:
+    endpoint: http://lda.data.parliament.uk/commonsdivisions.ttl
+  division: 
+    endpoint: http://lda.data.parliament.uk/commonsdivisions.ttl?uin=%{uin}
+    
+vocab:
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  dcterms: http://purl.org/dc/terms/
+  api: http://purl.org/linked-data/api/vocab#
+  parl: http://data.parliament.uk/schema/parl#
+  xhtml: http://www.w3.org/1999/xhtml/vocab#
+  a9: http://a9.com/-/spec/opensearch/1.1/
